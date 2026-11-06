@@ -177,6 +177,18 @@ p.lede strong{color:var(--ink)}
 .bp-glass::after{content:"";position:absolute;top:0;bottom:0;width:24px;left:-34px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);animation:polegloss 4.6s ease-in-out infinite;z-index:2}
 @keyframes polegloss{0%,55%{left:-34px}85%,100%{left:110%}}
 @media(max-width:880px){.hero{flex-direction:column}.bigpole{height:252px;width:78px}.bp-glass{height:calc(100% - 122px)}}
+
+/* the word — comment receipts */
+.quotes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px}
+.quote{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:var(--ink);background:linear-gradient(180deg,#15151D,#0E0E13);border:1px solid var(--line);border-radius:3px;padding:20px;position:relative;box-shadow:7px 7px 0 rgba(124,58,237,.20);transition:transform .18s ease,border-color .18s ease}
+.quote:hover{transform:translateY(-3px);border-color:var(--neon)}
+.quote.big{grid-column:span 2;background:linear-gradient(135deg,#3B1470,#1B1030 60%);border-color:rgba(216,180,254,.45)}
+.quote p{font-family:"Special Elite",monospace;font-size:16.5px;line-height:1.5;color:#EFEAF8}
+.quote.big p{font-size:20px}
+.quote footer{margin-top:auto;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--peri)}
+.quote footer span{display:block;margin-top:3px;font-weight:400;font-size:11.5px;letter-spacing:.08em;color:var(--ink-soft)}
+/* sticky mobile book bar */
+.bookbar{display:none}
 /* ticker — once, like the pole */
 .ticker{overflow:hidden;background:var(--purple-deep);border-block:1px solid var(--line);padding:9px 0;margin:6px 0 2px}
 .ticker .track{display:flex;width:max-content;animation:tick 30s linear infinite}
@@ -230,6 +242,67 @@ nav.tabs{overflow-x:auto;flex-wrap:nowrap}nav.tabs a{white-space:nowrap;padding:
 }
 @media(max-width:480px){.posters{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* ============ MOBILE PORT — formatted, justified, deliberate ============ */
+@media(max-width:880px){
+  body{padding-bottom:78px}
+  main{padding:0 18px}
+  section{margin-top:46px}
+  /* header: one clean brand row, one action row */
+  .top{padding:14px 18px 0;gap:10px}
+  .brand img{width:32px;height:40px}
+  .brand .name{font-size:16px}
+  .brand .sub{font-size:9.5px}
+  .pill{padding:8px 12px;font-size:10.5px}
+  .btn{padding:12px 16px;font-size:12.5px}
+  /* nav: single scrollable strip, nothing clipped */
+  nav.main{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:26px;padding:12px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  nav.main::-webkit-scrollbar{display:none}
+  nav.main a{white-space:nowrap;font-size:12px}
+  /* hero: tighter stack, full-width thumb targets */
+  .hero{padding-top:26px;gap:22px}
+  .ring{width:212px;height:212px;top:-24px}
+  .hero .mark{width:102px}
+  h1{font-size:52px}
+  .hero .tagline{font-size:18px}
+  .cta{flex-direction:column;align-items:stretch;gap:10px;margin-top:22px}
+  .cta .btn{width:100%;text-align:center;padding:16px}
+  .stats{grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+  .stat{padding:14px 10px}
+  /* section heads + justified body copy */
+  .decktitle{font-size:31px;line-height:1.08}
+  .lede,.small,.fine{ text-align:justify;hyphens:auto}
+  /* services: name+price on one line, Book as a full-width thumb bar */
+  .panel{padding:20px 18px}
+  .srow{flex-wrap:wrap;row-gap:10px}
+  .srow .pr{margin-left:auto;font-size:24px}
+  .srow .ds{text-align:justify;hyphens:auto}
+  .srow .bk{flex:1 1 100%;text-align:center;padding:14px;font-size:12px;margin-left:0}
+  /* chart cards: tighten, justify captions */
+  .cut figcaption{padding:16px 18px 18px}
+  .cut .cap{text-align:justify;hyphens:auto}
+  /* reviews: swipe row */
+  .quotes{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:4px 2px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .quotes::-webkit-scrollbar{display:none}
+  .quote{flex:0 0 78%;scroll-snap-align:start}
+  .quote.big{flex-basis:86%}
+  /* hours + location: stacked rows */
+  .cols{grid-template-columns:1fr;gap:16px}
+  .lrow{grid-template-columns:1fr;gap:2px;padding:13px 0}
+  .lrow .v{text-align:left}
+  .posters{grid-template-columns:1fr 1fr;gap:12px}
+  .poster{padding:14px}
+  /* book mirror: full-width button */
+  .mirror{padding:30px 22px}
+  .mirror .btn{width:100%;text-align:center;padding:17px;font-size:14px}
+  .mirror p{text-align:justify;hyphens:auto}
+  /* sticky book bar */
+  .bookbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:120;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(10,10,14,.88);backdrop-filter:blur(12px);border-top:1px solid rgba(168,85,247,.45)}
+  .bb-t strong{display:block;font-family:Oswald,sans-serif;font-size:15px;letter-spacing:.06em}
+  .bb-t span{font-size:11.5px;color:var(--ink-soft)}
+  .bb-b{background:linear-gradient(180deg,#8B46F0,#6D28C9);color:#fff;text-decoration:none;font-weight:700;letter-spacing:.12em;font-size:13.5px;padding:14px 22px;border-radius:3px;box-shadow:0 6px 18px rgba(124,58,237,.45)}
+  footer.site{padding-bottom:26px}
+}
 </style>
 </head>
 <body>
@@ -245,6 +318,7 @@ nav.tabs{overflow-x:auto;flex-wrap:nowrap}nav.tabs a{white-space:nowrap;padding:
 </div>
 </div>
 <noscript><style>#boot{display:none}</style></noscript>
+<div class="bookbar"><div class="bb-t"><strong>Book the chair</strong><span>Cuts from $20 · Towson</span></div><a class="bb-b" href="https://book.squareup.com/appointments/qfxwi14vovq1gd/location/L8NWEY5AE1Q81/services?buttonTextColor=ffffff&color=212121&locale=en&referrer=so">BOOK NOW</a></div>
 <canvas id="fx" aria-hidden="true"></canvas>
 <div class="wrap">
 <header>
@@ -261,7 +335,7 @@ nav.tabs{overflow-x:auto;flex-wrap:nowrap}nav.tabs a{white-space:nowrap;padding:
 <div class="trimline" aria-hidden="true"></div>
 <nav class="tabs" aria-label="Sections">
 <a href="#services">Services</a>
-<a href="#chart">The Chart</a>
+<a href="#chart">The Chart</a><a href="#word">Reviews</a>
 <a href="#hours">Hours &amp; Location</a>
 <a href="#work">The Work</a>
 <a href="#book">Book</a>
@@ -400,6 +474,21 @@ nav.tabs{overflow-x:auto;flex-wrap:nowrap}nav.tabs a{white-space:nowrap;padding:
 </div>
 </section>
 
+
+<!-- THE WORD — his real Instagram comments, verbatim -->
+<section class="wrap" id="word">
+<div class="s-head"><span class="s-tag">The receipts</span><h2>THE WORD</h2><p class="sub">Not ads. Not written for this site. These are Prince&rsquo;s actual Instagram comments, word for word &mdash; tap any quote to see it live on the post.</p></div>
+<div class="quotes">
+<a class="quote big" href="https://www.instagram.com/p/DPd_ld7gIXk/c/18046085138344157/" target="_blank" rel="noopener"><p>&ldquo;Ppl not hip, nicest barber in da game🙌🏽&rdquo;</p><footer>— Iman Mbi<span>Instagram comment · see it live ↗</span></footer></a>
+<a class="quote" href="https://www.instagram.com/p/De8PvrOleeR/c/18502891078098288/" target="_blank" rel="noopener"><p>&ldquo;@nellycutz_166 never fails to impress 🔥🔥&rdquo;</p><footer>— Dozy<span>Instagram comment · see it live ↗</span></footer></a>
+<a class="quote" href="https://www.instagram.com/p/De8PvrOleeR/c/18194392789403549/" target="_blank" rel="noopener"><p>&ldquo;ICYYYY!!!!! READY FOR HOCO!!! BOOK WITH LEE❤&rdquo;</p><footer>— LEE’S LOCS & STYLES<span>Instagram comment · see it live ↗</span></footer></a>
+<a class="quote" href="https://www.instagram.com/p/Da8A62egGDj/c/17945389941082928/" target="_blank" rel="noopener"><p>&ldquo;dead fresh fr&rdquo;</p><footer>— 419er<span>Instagram comment · see it live ↗</span></footer></a>
+<a class="quote" href="https://www.instagram.com/p/DHllbylupwH/c/18077487718690626/" target="_blank" rel="noopener"><p>&ldquo;Sheeeeesh! 🔥🔥🔥&rdquo;</p><footer>— MARTYvalenTINA<span>Instagram comment · see it live ↗</span></footer></a>
+<a class="quote" href="https://www.instagram.com/p/Dc4qbMFglN8/c/18095512052642351/" target="_blank" rel="noopener"><p>&ldquo;🔥🔥fire cut bro&rdquo;</p><footer>— Ryan<span>Instagram comment · see it live ↗</span></footer></a>
+<a class="quote" href="https://www.instagram.com/p/DS_U6b6AAZs/c/18097491122470074/" target="_blank" rel="noopener"><p>&ldquo;Nelly cuts is tufff&rdquo;</p><footer>— a fellow DMV barber, Laurel MD<span>Instagram comment · see it live ↗</span></footer></a>
+<a class="quote" href="https://www.instagram.com/p/DOeRE17D150/c/18353467852095080/" target="_blank" rel="noopener"><p>&ldquo;Lemme get a cut like this&rdquo;</p><footer>— Olly🖤<span>Instagram comment · see it live ↗</span></footer></a>
+</div>
+</section>
 <!-- 03 HUSTLE — HOURS + LOCATION -->
 <section id="hours">
 <div class="decklabel"><span>03 / The Week</span><i></i><span>Hustle</span></div>
