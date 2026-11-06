@@ -166,11 +166,11 @@ p.lede strong{color:var(--ink)}
 #fx{position:fixed;inset:0;width:100%;height:100%;z-index:90;pointer-events:none}
 
 /* the giant pole — black/white/purple, his colors, classic spin */
-.bigpole{position:relative;width:108px;height:430px;flex:none;filter:drop-shadow(0 18px 34px rgba(0,0,0,.65))}
+.bigpole{display:flex;flex-direction:column;position:relative;width:108px;height:430px;flex:none;filter:drop-shadow(0 18px 34px rgba(0,0,0,.65))}
 .bigpole::before{content:"";position:absolute;inset:8% -34px;background:radial-gradient(closest-side,rgba(124,58,237,.28),transparent);filter:blur(6px)}
 .bp-ball{width:34px;height:34px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 34% 30%,#F5F5FA,#9A9AA8 45%,#3C3C48 92%);box-shadow:0 0 0 1px rgba(255,255,255,.16),0 4px 10px rgba(0,0,0,.6);position:relative;z-index:2}
 .bp-cap{height:30px;margin:3px 6px;border-radius:8px;background:linear-gradient(90deg,#2E2E38,#C9C9D6 30%,#767684 55%,#EDEDF4 80%,#2E2E38);box-shadow:inset 0 -6px 10px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.5);position:relative;z-index:2}
-.bp-glass{position:relative;height:calc(100% - 134px);margin:0 10px;border-radius:44px/30px;overflow:hidden;box-shadow:inset 0 0 0 2px rgba(255,255,255,.14),inset 0 14px 24px rgba(0,0,0,.5),inset 0 -14px 24px rgba(0,0,0,.5)}
+.bp-glass{position:relative;flex:1 1 auto;margin:0 10px;border-radius:44px/30px;overflow:hidden;box-shadow:inset 0 0 0 2px rgba(255,255,255,.14),inset 0 14px 24px rgba(0,0,0,.5),inset 0 -14px 24px rgba(0,0,0,.5)}
 .bp-stripes{will-change:transform;position:absolute;left:0;right:0;top:-190px;height:calc(100% + 380px);background:repeating-linear-gradient(52deg,#7C3AED 0 30px,#F4F2F7 30px 60px,#0A0A0D 60px 90px);background-size:100% 190px;animation:polespin 2.6s linear infinite}
 @keyframes polespin{from{transform:translateY(0)}to{transform:translateY(190px)}}
 .bp-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62),rgba(255,255,255,.30) 26%,rgba(255,255,255,.05) 48%,rgba(0,0,0,.18) 66%,rgba(0,0,0,.66))}
@@ -257,15 +257,16 @@ nav.tabs{overflow-x:auto;flex-wrap:nowrap}nav.tabs a{white-space:nowrap;padding:
   nav.main{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:24px;padding:12px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   nav.main::-webkit-scrollbar{display:none}
   nav.main a{white-space:nowrap;font-size:12px}
-  /* hero: tight stack — small pole on top, then the mark, headline full width */
-  .hero{flex-direction:column;padding-top:22px;gap:12px}
-  .bigpole{width:54px;height:148px}
-  .bp-ball{width:19px;height:19px}
-  .bp-cap{height:17px;margin:2px 4px}
-  .bp-glass{height:calc(100% - 76px);margin:0 5px}
-  .ring{width:168px;height:168px;top:-14px}
-  .hero .mark{width:80px}
-  h1{font-size:44px;letter-spacing:.01em}
+  /* hero: pole on the side, stretched long — the PC composition */
+  .hero{display:grid;grid-template-columns:62px 1fr;gap:14px;padding-top:22px;align-items:stretch}
+  .bigpole{width:62px;height:auto}
+  .bp-ball{width:20px;height:20px}
+  .bp-cap{height:18px;margin:2px 4px}
+  .bp-glass{height:auto;margin:0 5px}
+  .hero-main{min-width:0}
+  .ring{width:150px;height:150px;top:-12px}
+  .hero .mark{width:74px}
+  h1{font-size:28px;letter-spacing:.01em;white-space:nowrap}
   .hero .tag{font-size:14.5px;margin-top:8px}
   .hero .sub2{font-size:9.5px;letter-spacing:.24em}
   .cta{flex-direction:row;gap:8px;margin-top:16px}
