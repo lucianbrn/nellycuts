@@ -171,7 +171,7 @@ p.lede strong{color:var(--ink)}
 .bp-ball{width:34px;height:34px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 34% 30%,#F5F5FA,#9A9AA8 45%,#3C3C48 92%);box-shadow:0 0 0 1px rgba(255,255,255,.16),0 4px 10px rgba(0,0,0,.6);position:relative;z-index:2}
 .bp-cap{height:30px;margin:3px 6px;border-radius:8px;background:linear-gradient(90deg,#2E2E38,#C9C9D6 30%,#767684 55%,#EDEDF4 80%,#2E2E38);box-shadow:inset 0 -6px 10px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.5);position:relative;z-index:2}
 .bp-glass{position:relative;height:calc(100% - 134px);margin:0 10px;border-radius:44px/30px;overflow:hidden;box-shadow:inset 0 0 0 2px rgba(255,255,255,.14),inset 0 14px 24px rgba(0,0,0,.5),inset 0 -14px 24px rgba(0,0,0,.5)}
-.bp-stripes{position:absolute;left:0;right:0;top:-190px;height:calc(100% + 380px);background:repeating-linear-gradient(52deg,#7C3AED 0 30px,#F4F2F7 30px 60px,#0A0A0D 60px 90px);background-size:100% 190px;animation:polespin 2.6s linear infinite}
+.bp-stripes{will-change:transform;position:absolute;left:0;right:0;top:-190px;height:calc(100% + 380px);background:repeating-linear-gradient(52deg,#7C3AED 0 30px,#F4F2F7 30px 60px,#0A0A0D 60px 90px);background-size:100% 190px;animation:polespin 2.6s linear infinite}
 @keyframes polespin{from{transform:translateY(0)}to{transform:translateY(190px)}}
 .bp-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62),rgba(255,255,255,.30) 26%,rgba(255,255,255,.05) 48%,rgba(0,0,0,.18) 66%,rgba(0,0,0,.66))}
 .bp-glass::after{content:"";position:absolute;top:0;bottom:0;width:24px;left:-34px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);animation:polegloss 4.6s ease-in-out infinite;z-index:2}
@@ -195,7 +195,7 @@ p.lede strong{color:var(--ink)}
 .ticker span{font-family:Oswald,sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#E9E4F5;white-space:nowrap;padding-right:.6em}
 .ticker b{color:var(--neon-soft);font-weight:600}
 @keyframes tick{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion: reduce){.ticker .track{animation:none}}
+
 /* the chart — client headshots, one per style */
 .chart{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:20px;margin-top:20px}
 .cut{position:relative;background:linear-gradient(180deg,#14141C,#0E0E13);border:1px solid var(--line);border-radius:3px;margin:0}
@@ -241,61 +241,73 @@ nav.tabs{overflow-x:auto;flex-wrap:nowrap}nav.tabs a{white-space:nowrap;padding:
 .mirror{border-width:10px;padding:30px}.mirror h2{font-size:25px}
 }
 @media(max-width:480px){.posters{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-/* ============ MOBILE PORT — formatted, justified, deliberate ============ */
+/* ============ MOBILE PORT v2 — same composition as PC, fitted ============ */
 @media(max-width:880px){
   body{padding-bottom:78px}
-  main{padding:0 18px}
-  section{margin-top:46px}
-  /* header: one clean brand row, one action row */
-  .top{padding:14px 18px 0;gap:10px}
+  main{padding:0 16px}
+  section{margin-top:44px}
+  .top{padding:14px 16px 0;gap:10px}
   .brand img{width:32px;height:40px}
   .brand .name{font-size:16px}
   .brand .sub{font-size:9.5px}
   .pill{padding:8px 12px;font-size:10.5px}
   .btn{padding:12px 16px;font-size:12.5px}
-  /* nav: single scrollable strip, nothing clipped */
-  nav.main{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:26px;padding:12px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  nav.main{display:flex;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:24px;padding:12px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   nav.main::-webkit-scrollbar{display:none}
   nav.main a{white-space:nowrap;font-size:12px}
-  /* hero: tighter stack, full-width thumb targets */
-  .hero{padding-top:26px;gap:22px}
-  .ring{width:212px;height:212px;top:-24px}
-  .hero .mark{width:102px}
-  h1{font-size:52px}
-  .hero .tagline{font-size:18px}
-  .cta{flex-direction:column;align-items:stretch;gap:10px;margin-top:22px}
-  .cta .btn{width:100%;text-align:center;padding:16px}
-  .stats{grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
-  .stat{padding:14px 10px}
-  /* section heads + justified body copy */
-  .decktitle{font-size:31px;line-height:1.08}
-  .lede,.small,.fine{ text-align:justify;hyphens:auto}
-  /* services: name+price on one line, Book as a full-width thumb bar */
-  .panel{padding:20px 18px}
-  .srow{flex-wrap:wrap;row-gap:10px}
-  .srow .pr{margin-left:auto;font-size:24px}
+  /* hero: tight stack — small pole on top, then the mark, headline full width */
+  .hero{flex-direction:column;padding-top:22px;gap:12px}
+  .bigpole{width:54px;height:148px}
+  .bp-ball{width:19px;height:19px}
+  .bp-cap{height:17px;margin:2px 4px}
+  .bp-glass{height:calc(100% - 76px);margin:0 5px}
+  .ring{width:168px;height:168px;top:-14px}
+  .hero .mark{width:80px}
+  h1{font-size:44px;letter-spacing:.01em}
+  .hero .tag{font-size:14.5px;margin-top:8px}
+  .hero .sub2{font-size:9.5px;letter-spacing:.24em}
+  .cta{flex-direction:row;gap:8px;margin-top:16px}
+  .cta .btn{flex:1;text-align:center;padding:13px 6px;font-size:11.5px}
+  .openline{font-size:12.5px;margin-top:12px}
+  .stats{grid-template-columns:repeat(4,1fr);gap:6px;margin-top:20px}
+  .stat{padding:10px 4px}
+  .stat .n{font-size:19px}
+  .stat .l{font-size:8.5px;letter-spacing:.1em}
+  /* heads + justified ledes */
+  .decktitle{font-size:29px;line-height:1.08}
+  .lede{text-align:justify;hyphens:auto;font-size:15px}
+  /* services: the PC row, tightened — name, price, Book on one line */
+  .panel{padding:18px 16px}
+  .srow{flex-wrap:nowrap;gap:10px;padding:13px 0}
+  .srow .nm{font-size:15px}
+  .srow .pr{margin-left:auto;font-size:21px}
+  .srow .bk{flex:none;padding:9px 13px;margin-left:0}
   .srow .ds{text-align:justify;hyphens:auto}
-  .srow .bk{flex:1 1 100%;text-align:center;padding:14px;font-size:12px;margin-left:0}
-  /* chart cards: tighten, justify captions */
-  .cut figcaption{padding:16px 18px 18px}
-  .cut .cap{text-align:justify;hyphens:auto}
-  /* reviews: swipe row */
-  .quotes{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:4px 2px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .quotes::-webkit-scrollbar{display:none}
-  .quote{flex:0 0 78%;scroll-snap-align:start}
-  .quote.big{flex-basis:86%}
-  /* hours + location: stacked rows */
+  /* chart: two-up wall, like the PC grid shrunk */
+  .chart{grid-template-columns:1fr 1fr;gap:12px}
+  .cut figcaption{padding:12px 13px 14px}
+  .cut h3{font-size:15.5px}
+  .cut .cap{font-size:12.5px;line-height:1.45}
+  .cut .books{font-size:12px}
+  .cut .tag{font-size:14px;padding:5px 9px}
+  /* reviews: two-up grid, like PC */
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .quote{padding:14px;box-shadow:5px 5px 0 rgba(124,58,237,.20)}
+  .quote.big{grid-column:span 2}
+  .quote p{font-size:13.5px;line-height:1.45}
+  .quote.big p{font-size:16px}
+  .quote footer{font-size:11.5px}
+  /* hours + location */
   .cols{grid-template-columns:1fr;gap:16px}
   .lrow{grid-template-columns:1fr;gap:2px;padding:13px 0}
   .lrow .v{text-align:left}
   .posters{grid-template-columns:1fr 1fr;gap:12px}
   .poster{padding:14px}
-  /* book mirror: full-width button */
-  .mirror{padding:30px 22px}
-  .mirror .btn{width:100%;text-align:center;padding:17px;font-size:14px}
-  .mirror p{text-align:justify;hyphens:auto}
+  /* book mirror */
+  .mirror{padding:28px 20px}
+  .mirror .btn{width:100%;text-align:center;padding:16px;font-size:14px}
   /* sticky book bar */
   .bookbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:120;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(10,10,14,.88);backdrop-filter:blur(12px);border-top:1px solid rgba(168,85,247,.45)}
   .bb-t strong{display:block;font-family:Oswald,sans-serif;font-size:15px;letter-spacing:.06em}
@@ -626,7 +638,7 @@ var liv=setInterval(function(){ if(li<lines.length){ var d=document.createElemen
 </script>
 <script>
 (function(){
-var RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var RM=false; /* smoke stays alive by the owner's order */
 var cv=document.getElementById('fx'); if(!cv) return;
 var ctx=cv.getContext('2d');
 var W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,1.5);
