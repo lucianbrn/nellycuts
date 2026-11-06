@@ -259,7 +259,9 @@ nav.tabs{overflow-x:auto;flex-wrap:nowrap}nav.tabs a{white-space:nowrap;padding:
   nav.main a{white-space:nowrap;font-size:12px}
   /* hero: pole on the side, stretched long — the PC composition */
   .hero{display:grid;grid-template-columns:62px 1fr;gap:14px;padding-top:22px;align-items:stretch}
-  .bigpole{width:62px;height:auto}
+  .bigpole{width:62px;height:auto;margin-left:-32px;z-index:1}
+  /* wall mount: pole flush to the screen edge, faint wall panel behind it */
+  .hero::before{content:"";position:absolute;left:-32px;top:-14px;bottom:-8px;width:96px;background:linear-gradient(90deg,rgba(124,58,237,.12),rgba(255,255,255,.05) 55%,transparent);border-right:1px solid rgba(255,255,255,.06);z-index:0}
   .bp-ball{width:20px;height:20px}
   .bp-cap{height:18px;margin:2px 4px}
   .bp-glass{height:auto;margin:0 5px}
